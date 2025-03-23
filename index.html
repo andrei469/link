@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ligaw Request</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            background-color: pink;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .button-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .yes {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .no {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        #gif-yes, #gif-no, #gif-big-yes, #gif-angry-hamster {
+            display: none;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        #gif-big-yes, #gif-angry-hamster {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        #gif-big-yes {
+            width: 500px;
+        }
+        #gif-angry-hamster {
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pede ba kitang ligawan?</h2>
+        <div class="button-container">
+            <button class="btn yes" onclick="showGif('yes')">Yes</button>
+            <button class="btn no" onclick="growYesButton()">No</button>
+        </div>
+        <img id="gif-yes" src="yessnoopy.gif" width="300" alt="Happy GIF">
+        <img id="gif-no" src="angrysnoopy.gif" width="300" alt="Funny GIF">
+        <img id="gif-big-yes" src="rizz.gif" alt="Big Happy GIF">
+        <img id="gif-angry-hamster" src="angryhamster.jfif" alt="Angry Hamster GIF">
+        <audio id="yes-audio" src="rizz.mp3" loop></audio>
+        <audio id="no-audio" src="no.mp3.mp3" loop></audio>
+    </div>
+
+    <script>
+        let yesButton = document.querySelector('.yes');
+        let noButton = document.querySelector('.no');
+        let gifYes = document.getElementById('gif-yes');
+        let gifNo = document.getElementById('gif-no');
+        let gifBigYes = document.getElementById('gif-big-yes');
+        let gifAngryHamster = document.getElementById('gif-angry-hamster');
+        let yesAudio = document.getElementById('yes-audio');
+        let noAudio = document.getElementById('no-audio');
+        let size = 20; // Initial font size for Yes button
+        let defaultSize = 20;
+
+        function showGif(answer) {
+            if (answer === 'yes') {
+                gifYes.style.display = 'block';
+                gifNo.style.display = 'none';
+                gifBigYes.style.display = 'block';
+                gifAngryHamster.style.display = 'none';
+                yesAudio.play();
+                noAudio.pause();
+                noAudio.currentTime = 0;
+                resetYesButton();
+            }
+        }
+
+        function growYesButton() {
+            size += 5;
+            yesButton.style.fontSize = size + 'px';
+            yesButton.style.padding = (size / 3) + 'px ' + (size / 2) + 'px';
+            gifNo.style.display = 'block';
+            gifYes.style.display = 'none';
+            gifBigYes.style.display = 'none';
+            gifAngryHamster.style.display = 'block';
+            noAudio.play();
+            yesAudio.pause();
+            yesAudio.currentTime = 0;
+        }
+
+        function resetYesButton() {
+            size = defaultSize;
+            yesButton.style.fontSize = size + 'px';
+            yesButton.style.padding = (size / 3) + 'px ' + (size / 2) + 'px';
+        }
+    </script>
+</body>
+</html>
